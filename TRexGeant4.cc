@@ -81,7 +81,7 @@ int main(int argc,char** argv) {
   G4VUserPhysicsList* physics = new QGSP_BIC;
   runManager->SetUserInitialization(physics);
 
-  runManager->Initialize();
+  //runManager->Initialize();
 
   // set mandatory user action class
   G4VUserPrimaryGeneratorAction* gen_action = new TRexPrimaryGeneratorAction;
@@ -93,6 +93,7 @@ int main(int argc,char** argv) {
   G4UserRunAction* run_action = new TRexRunAction(data, (TRexPrimaryGeneratorAction*)gen_action, (TRexEventAction*) event_action);
   runManager->SetUserAction(run_action);
 
+  runManager->Initialize();
 
   // Initialize G4 kernel
   //runManager->Initialize();
