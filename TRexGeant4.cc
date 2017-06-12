@@ -5,11 +5,11 @@
  *      Author: sklupp
  */
 
-#ifdef G4MULTITHREADED
-#include "G4MTRunManager.hh"
-#else
+//#ifdef G4MULTITHREADED
+//#include "G4MTRunManager.hh"
+//#else
 #include "G4RunManager.hh"
-#endif
+//#endif
 
 #ifdef G4UI_USE
 #include "G4UIExecutive.hh"
@@ -27,7 +27,8 @@
 
 #include "TRexDetectorConstruction.hh"
 //#include "TRexPhysicsList.hh"
-#include "PhysicsList.hh"
+//#include "PhysicsList.hh"
+#include "QGSP_BIC.hh"
 #include "TRexPrimaryGeneratorAction.hh"
 #include "TRexRunAction.hh"
 #include "TRexEventAction.hh"
@@ -77,7 +78,7 @@ int main(int argc,char** argv) {
   runManager->SetUserInitialization(detector);
 
   //G4VUserPhysicsList* physics = new TRexPhysicsList;
-  G4VUserPhysicsList* physics = new PhysicsList;
+  G4VUserPhysicsList* physics = new QGSP_BIC;
   runManager->SetUserInitialization(physics);
 
   runManager->Initialize();
