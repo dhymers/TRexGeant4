@@ -703,8 +703,11 @@ void TRexMaterials::BuildSurfaceMirror() {
 }
 
 G4Material* TRexMaterials::BuildDeuterium() {
+	//adjust temperature to 0deg, pressure to 1 atm
+	//thanks latar
+	//as per https://encyclopedia.airliquide.com/deuterium
 	G4Material* deuteriumGas = new G4Material("2H", 0.180 * CLHEP::kg/CLHEP::m3, 1,
-			kStateGas, 298 * CLHEP::kelvin, 10.0e-3 * CLHEP::atmosphere);
+			kStateGas, 273 * CLHEP::kelvin, 1 * CLHEP::atmosphere);
 
 	deuteriumGas->AddElement(fElD,2);
 
