@@ -19,6 +19,7 @@ class TRexStackingAction : public G4UserStackingAction{
         
     private:
         G4ParticleDefinition* electronDef;
+        G4ParticleDefinition* deuteronDef;
         
         G4ParticleTable* particleTable;
         std::ofstream out;

@@ -35,6 +35,7 @@ void TRexAngularDistribution::GeneratePrimaries(G4Event *anEvent) {
 		fTargetMaterial = GetTargetMaterial();
 		std::cout << "TargetMaterialName for energy loss calculation in the target = " << fTargetMaterial->Name() << std::endl;
 		fKinematics = new Kinematic(&fProjectile, fTargetMaterial, TRexSettings::Get()->GetTargetThickness()/(CLHEP::mg/CLHEP::cm2));
+	    std::cout << "created kinematics" << std::endl;
 		
 		fEnergyVsTargetDepth = *(fKinematics->EnergyVsThickness(fBeamEnergy / CLHEP::MeV, TRexSettings::Get()->GetTargetThickness() / 1000 / (CLHEP::mg/CLHEP::cm2)));
 				
@@ -50,7 +51,7 @@ void TRexAngularDistribution::GeneratePrimaries(G4Event *anEvent) {
 	fGammaTheta->resize(0);
 	fGammaPhi->resize(0);
 	fGammaEnergy->resize(0);
-
+	
 	// shoot the emission point
 	ShootReactionPosition();
 
@@ -338,6 +339,10 @@ void TRexAngularDistribution::FillAngularDistributionHistos() {
 			}
 		}
 	}
+	
+	for(size_t i = 0 ; i < fNbOfLevels; i++){
+		fHistos[i].Draw();
+	}
 
 	//		TFile testFile("angDistHisto.root", "recreate");
 	//		testFile.cd();
@@ -452,7 +457,7 @@ void TRexAngularDistribution::CalculateScatteringProbability() {
 		}
 		std::cout << "ScatteringProbability(transfer)[" << index << "] = " << fScatteringProbabilitySingle[index] << std::endl;
 	}
-
+	
 	// set total scattering probability
 	fScatteringProbability = fScatteringProbabilitySingle[fNbOfLevels - 1] * TRexSettings::Get()->GetTransferOrCoulexProbability() +
 		fScatteringProbabilitySingle[fNbOfLevels + fTargetMaterial->NumberOfElements() - 1] * (1 - TRexSettings::Get()->GetTransferOrCoulexProbability());
