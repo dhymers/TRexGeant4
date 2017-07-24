@@ -39,7 +39,7 @@ G4ClassificationOfNewTrack TRexStackingAction::ClassifyNewTrack(const G4Track* t
         //    << std::endl;
         
     }
-    else if (track->GetParticleDefinition() == deuteronDef){
+    /*else if (track->GetParticleDefinition() == deuteronDef){
         G4cout  << "**********" << G4endl
                 << "TrackID: " << track->GetTrackID() << G4endl
                 << "ParentID: " << track->GetParentID() << G4endl
@@ -50,7 +50,7 @@ G4ClassificationOfNewTrack TRexStackingAction::ClassifyNewTrack(const G4Track* t
                 << "z (mm): " << track->GetPosition().z()/CLHEP::mm << G4endl
                 << "time (ns): " << track->GetGlobalTime()/CLHEP::ns << G4endl
                 << "**********" << G4endl;
-    }
+    }*/
     
     return classification;
 }
