@@ -452,8 +452,6 @@ void TRexAngularDistribution::CalculateScatteringProbability() {
 		}
 		std::cout << "ScatteringProbability(transfer)[" << index << "] = " << fScatteringProbabilitySingle[index] << std::endl;
 	}
-	
-	std::cout << "done cross sections"
 
 	// set total scattering probability
 	fScatteringProbability = fScatteringProbabilitySingle[fNbOfLevels - 1] * TRexSettings::Get()->GetTransferOrCoulexProbability() +
